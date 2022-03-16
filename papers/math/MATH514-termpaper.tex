@@ -1,0 +1,356 @@
+\documentclass[12pt,oneside]{amsart}
+
+\title{Math 414/514 Term Paper}
+\author{James Rushing}
+\date{04/22/20}
+
+% Homework template by Zach Teitler
+% Public domain, free to use and modify for any purpose
+% v1.0 2020-01-13
+
+% Packages
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage[letterpaper,margin=1.5in]{geometry}
+\usepackage[pagebackref]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{amsrefs}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+
+% Extra space between lines
+
+\linespread{1.5}
+
+
+
+% Theorems, lemmas, etc.
+
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{claim}[equation]{Claim}
+\newtheorem{lemma}[equation]{Theorem}
+\newtheorem{corollary}[equation]{Theorem}
+\newtheorem{conjecture}[equation]{Conjecture}
+\newtheorem{question}[equation]{Question}
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[equation]{Definition}
+
+\theoremstyle{remark}
+
+\newtheorem{exer}{Exercise}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem{example}[equation]{Example}
+
+\numberwithin{equation}{exer}
+
+
+% Answers
+
+% Use "proof" for proof exercises!
+% Use "answer" for question (non-proof) exercises
+
+\newenvironment{answer}{\bigskip\noindent\emph{Answer.}}{\hfill$\diamond$\newline}
+
+
+% Symbols
+
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\smm}{\sum_{m=1}^\infty}
+\newcommand{\sxx}{\sin{\big(\frac{x}{2}\big)}}
+\newcommand{\cmx}{\cos{(mx)}}
+\newcommand{\smx}{\sin{(mx)}}
+\newcommand{\cxx}{\cos{\big(\frac{x}{2}\big)}}
+
+
+
+
+\begin{document}
+\maketitle
+\section*{Part I}
+\indent The Basel Problem was first articulated by Pietro Mengoli in the middle of the 17th century. Roughly, he wanted to know the sum of the reciprocal of squares.  Like many of the most vexing problems of the 17th century, the Basel Problem would not be solved until the following century. And like many of those problems, it was first solved by Leonard Euler.  
+\newline
+\indent Mengoli was born in Bologna in Northern Italy. However, his problem became eponymously known for a city 280 miles Northwest over the alps. Basel is a city nestled at the base of the northern Swiss alps. It straddles the Rhine river, whose tributaries are fed reliably by the melt in the summer months, and the rain in the winter months. This made Basel a point of confluence for goods, and more importantly for our subject matter, ideas, between Italy and the areas accessible via the Rhine. These areas include modern day France, Germany, Luxembourg, the Netherlands and beyond to what is now the UK via the North Sea\cite{basel}. 
+\newline
+\indent It is, therefore, not surprising that Basel became a seat of scientific and mathematical thought in Europe. Moreover, Basel was early amongst the Reformation movements that spread throughout Europe in the 15th and 16th century. For this reason, among others, Basel attracted those fleeing the tyranny of the Catholic church. Basel did not, however, welcome the tired, poor, and the huddled masses. They exclusively welcomed the rich and powerful into their city. And, indeed, it was a member of one of these powerful families that first popularized the Basel problem. In 1689, Jacob Bernoulli wrote about the Basel problem, "If somebody  should succeed in finding what till now withstood our efforts and communicate it to us we shall be much obliged to him." \cite{MR2422949}
+\newline \indent
+It was around 45 years later, at the behest Jacob's younger brother, Johann Bernoulli, that another ubiquitous Baseler solved the problem; the inimitable Leonhard Euler. Euler's proof involved comparing coefficients of the Maclaurin series expansion of $\sin{x}$, which was all ready known to mathematicians of that time. He found that, if you continue the add the Basel sum to infinity, you get the following, astonishing result:
+\begin{align*}
+    \frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} + \dots = \frac{\pi^2}{6}.
+\end{align*}
+To see $\pi$ materialize in the closed form solution to a problem that had ostensibly nothing to do with circles boggled the minds of other mathematicians of the time.
+\newline \indent
+The Basel series was not the beginning of the story. It was the offspring of a series that was well known to those that toiled on the Basel problem. That series, commonly known as the harmonic series, is the infinite sum of the reciprocals of the natural numbers. An obscure proof that this series diverges, was given in the 14th century by Nicole Oresme. More well known proofs were given by all of our heroes mentioned above. As it turns out, both of these series are special cases of what is now known as the Riemann-Zeta function. We can articulate this function concisely as follows: 
+\begin{align}
+    \zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s}.
+\end{align}
+So far, we have only discussed the function where $s=1,2$, but much mathematical sweat and tears have been spilled attempting to understand the Riemann-Zeta function in which $s>2$. How can we make sense of the function if $s$ is negative? This is the subject of part IV and it leads us to what is potentially the greatest unsolved question in mathematics today.
+
+
+
+
+\newpage
+\section*{Part II}
+
+\newline \indent 
+While Jacob Bernoulli did not know what $\zeta (2)$ converged to, he did know, abstractly, that his white whale of a sum converged. For our purposes, we will take his posthumous word for it. As stated above, Euler was the first to show that $\zeta(2)= \frac{\pi^2}{6}$. Since that time, it has been shown in myriad ways. One way is to employ an elementary understanding of infinite sums and trigonometric identities. 
+
+
+\newline \indent 
+To begin, because  $\zeta (2)$ is convergent and strictly positive, we have that it is absolutely convergent\cite{MR4071523}(119). This is important because it allows us to rearrange the terms. We choose to separate by even and odd indices as follows:
+\begin{align*}
+    \smm \frac{1}{m^2}= \Big( 1 + \frac{1}{3^2} + \frac{1}{5^2} + \dots \Big) + \Big(\frac{1}{2^2} + \frac{1}{4^2}+\frac{1}{6^2} + \dots \Big)\\
+    = \Big( 1 + \frac{1}{3^2} + \frac{1}{5^2} + \dots \Big)
+    + \Big( \frac{1}{2^2} + \frac{1}{2^2 \cdot 2^2} + \frac{1}{2^2\cdot3^2}+\dots \Big)\\
+    =  \Big( 1 + \frac{1}{3^2} + \frac{1}{5^2} + \dots \Big) + \frac{1}{2^2}\Big( 1 + \frac{1}{2^2} + \frac{1}{3^2} + \dots \Big)\\
+    =\smm \frac{1}{m^2} = \Big( 1 + \frac{1}{3^2} + \frac{1}{5^2} + \dots \Big) + \frac{1}{4}\smm \frac{1}{m^2}
+\end{align*}  
+\begin{align}
+        \implies \frac{3}{4}\smm \frac{1}{m^2} = \sum_{k=1}^\infty \frac{1}{(2k+1)^2}.
+\end{align}
+\newline \indent
+Now consider the following integral, which we solve using integration by parts for all $ m  \in \mathbb{N}$ :
+\begin{align*}
+    -\frac{1}{2} \int_0^\pi x\cos{(mx)}dx
+    = -\frac{1}{2m} \int_0^\pi x(\sin{(mx)})'dx \\
+    =-\frac{1}{2m} \bigg[ \big[x\sin{(mx)}\big]_0^\pi - \int_0^\pi \sin{(mx)}dx\bigg]\\
+    =-\frac{1}{2m} \bigg[0 + \frac{1}{2} \big[\cos{(mx)}\big]_0^\pi\bigg] 
+    = -\frac{1}{2m^2}\big[(-1)^m - 1 \big].
+\end{align*}
+\indent 
+We write the integral above as a familiar set of solutions.
+
+    \begin{equation}
+      -\frac{1}{2} \int_0^\pi x\cos{(mx)}dx = \begin{cases}
+               0               & m=2,4,6,\dots\\
+               \frac{1}{m^2}              & m= 1,3,5, \dots
+           \end{cases}
+\end{equation}
+\indent
+
+Before we pull the final rabbit out of the hat, we digress to review a few trigonometric identities and apply them to $\cos{(mx)}$. Observe the following:
+\newline
+\begin{align*}
+    \cos{(mx)} = \frac{2\sin{\big(\frac{x}{2}\big)}}{2\sxx} \cdot \cos{(mx)}
+    =\frac{\sxx\cmx + \sxx \cmx}{2\sxx}
+\end{align*}
+\begin{align*}
+    \frac{\sxx\cmx + =\smx\cxx+\sxx\cmx-\smx\cxx}{2\sxx}
+\end{align*}    
+
+\begin{align}
+    =\frac{\sin{\big(mx + \frac{x}{2}\big)}-\sin{\big(mx-\frac{x}{2}\big)}}{2\sxx} .
+\end{align}
+\newline
+Below we combine our hand-crafted trigonometric identity (0.4), and our integral (0.3) as follows:
+\begin{align*}
+     -\frac{1}{2} \int_0^\pi x\cos{(mx)}dx=
+\end{align*}     
+\begin{align}
+     \int_0^\pi \frac{\sin{\big(mx-\frac{x}{2}\big)}}{4\sxx}
+     -\int_0^\pi\frac{x\sin{\big(mx + \frac{x}{2}\big)}}{4\sxx}
+        = \begin{cases}
+               0               & m=2,4,6,\dots\\
+               \frac{1}{m^2}              & m= 1,3,5, \dots
+           \end{cases}.
+\end{align}
+Using (0.5) we can write the following partial sum and recognize that the only terms that survive the telescoping sum are the first and the last:
+\begin{align*}
+    \frac{1}{1^2} + 0 + \frac{1}{3^2} + 0 + \frac{1}{5^2}+...+\frac{1}{(2r+1)^2} \\
+       =\Bigg(\int_0^\pi \frac{x\sin{\big(x-\frac{x}{2}\big)}}{4\sxx}
+     -\int_0^\pi\frac{x\sin{\big(x + \frac{x}{2}\big)}}{4\sxx} \Bigg)\\+
+     \Bigg(\int_0^\pi \frac{x\sin{\big(2x-\frac{x}{2}\big)}}{4\sxx}
+     -\int_0^\pi\frac{x\sin{\big(2x + \frac{x}{2}\big)}}{4\sxx} \Bigg)\\
+     +\dots\\
+     +     \Bigg(\int_0^\pi \frac{x\sin{\big((2r+1)x-\frac{x}{2}\big)}}{4\sxx}
+     -\int_0^\pi\frac{x\sin{\big((2r+1)x + \frac{x}{2}\big)}}{4\sxx} \Bigg)
+\end{align*}
+\begin{align}
+        =\int_0^\pi \frac{x\sin{\big(x-\frac{x}{2}\big)}}{4\sxx}-\int_0^\pi\frac{x\sin{\big((2r+1)x + \frac{x}{2}\big)}}{4\sxx}.
+\end{align}
+\indent
+The left-hand integral of (0.6) is easily computed as follows:
+\begin{align*}
+    \int_0^\pi \frac{x}{4} = \frac{1}{4} \Bigg[\frac{x^2}{2}\Bigg]_0^\pi = \frac{\pi^2}{8}.
+\end{align*}
+As $r \to \infty$ the integral on the right of (0.5) goes to zero. To show this, let
+\begin{align*}
+    f(x)=\frac{x}{\sxx}
+\end{align*}
+and let $A=2r+\frac{3}{2}$. With this, using integration by parts, the integral becomes 
+
+\begin{align*}
+    \int_0^\pi f(x) \sin{(Ax)}dx = -\frac{\cos{(A\pi)}}{A}f(\pi) +\frac{1}{A}f(0) + \int_0^\pi f'(x) \frac{\cos{(A\pi)}}{A}dx.
+\end{align*}
+\indent 
+Because $f'(x)$ is bounded, all these terms go to to zero as $A \to \infty$, Which goes much faster to infinity than $r$ does. 
+\newline\indent
+Therefore, returning to our first equation (0.2) we have that 
+\begin{align*}
+    \frac{3}{4}\smm \frac{1}{m^2} = \sum_{k=1}^\infty \frac{1}{(2k+1)^2} = \frac{\pi^2}{8}\\
+    \implies \smm \frac{1}{m^2} = \frac{\pi^2}{6}.
+\end{align*}
+Which, once again, confirms Euler's magical result. \cite{MR2916494}
+
+
+
+
+
+
+
+
+
+\newpage
+\section*{Part III}
+\newline \indent 
+Fourier analysis provides another another beautiful proof of this result. Let $f(x) = x^2$ for $x \in [-\pi,\pi]$.  Given the piece-wise continuous, $2\pi$ periodic function, we can write \begin{align}
+    f(x) = \frac{1}{2}a_0 + \sum_{n=1}^\infty a_n \cos{(nx)}
+\end{align}
+Where $a_0$ and $a_n$ are calculated as follows:
+\begin{align*}
+    a_0 = \frac{2}{\pi}\int_0^\pi x^2 dx = \frac{2}{\pi} \bigg[\frac{x^3}{3}  \bigg]_0^\pi = \frac{2\pi^2}{3}  
+\end{align*}
+\begin{align*}
+    a_n = \frac{2}{\pi} \int_0^\pi x^2 \cos{(nx)}dx 
+    = \frac{2}{n\pi} \int_0^\pi x^2 \Big(\sin{(nx)}\Big)'dx\\
+    =\frac{2}{n\pi} \Bigg[\Big[x^2\sin{(nx)}\Big]_0^\pi -2 \int_0^\pi x\sin{(nx)}dx\Bigg]
+    = \frac{2}{n\pi} \Bigg[ 0 + \frac{2}{n} \int_0^\pi x\Big(\cos{(nx)}\Big)'dx\Bigg]\\
+    =\frac{4}{n\pi^2} \Bigg[ \pi(-1)^n - \frac{1}{n}\Big[\sin{(n\pi)}\Big]_0^\pi\Bigg] 
+    = \frac{4(-1)^n}{n^2}.
+\end{align*}
+Now, using (0.7) we have the following, familiar result:
+\begin{align*}
+    f(x)=x^2= \frac{2\pi^2}{6} + \sum_{n=1}^\infty \frac{4(-1)^n}{n^2} \cos{(nx)}\\
+    \implies f(\pi) = \pi^2 =\frac{\pi^2}{3} + \sum_{n-1}^{\infty} \frac{4}{n^2}\\
+    \implies \frac{2 \pi^2}{3 \cdot 4} =\sum_{n-1}^{\infty} \frac{1}{n^2}\\
+    \implies \sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}. 
+\end{align*}
+\indent
+Interestingly, this approach can be utilized not only for $f(x)= x^2$, but for $f(x) = x^{2m}$ where $m \in \mathbb{N}$. Doing so will arrive you at solutions for $\zeta(2m)$. The question of convergence of $\zeta(3)$ and $\zeta(2n-1)$ naturally arises. 
+\indent Indeed, an analogous technique applied to the $2\pi$ periodic function $f(x)= \pi^2x - x^3$ can illuminate a concise form of $\zeta(3)$. The computations are too arduous for the scope of this paper, but we can arrive at the following, rapidly convergent series:
+\begin{align*}
+    \zeta(3) = \frac{{2\pi}^2}{9}\Bigg(\ln{2} + 2 \sum_{n=0}^\infty \frac{\zeta(2n)}{(2n+3)4^n}\Bigg).
+\end{align*}
+With $\zeta(3)$ mathematicians are now in the position that Jacob Bernoulli was in with $\zeta(2)$. We know that it converges, but we cannot show what it converges to without incorporating infinite sums. \cite{MR2793174}
+
+
+\newpage 
+\section*{Part IV}
+ \indent
+We have explored two ways to find Mengoli's sum of the reciprocal of squares. We re-framed his inquiry in light of the Riemann-zeta function with $s=2$ and we saw in Part III that we can use similar techniques to show that $\zeta(3)$ also converges. Mathematicians have shown that $\zeta(s)$ converges for real numbers $s>1$. In fact, it also converges for complex numbers in which the real part is greater than one. 
+\newline \indent 
+The Riemann-zeta function, as we have understood it to this point in the paper, is not defined when $s$ is negative. To harness the full power of the Riemann-zeta function we turn to the man himself. Bernhard Riemann has been described as an intuitive mathematician. In his book, 'Prime Obsession," about the Riemann Hypothesis, John Derbyshire describes Riemann as mathematical "trapeze artist." It took exactly this type of mind to marry two formally distinct disciplines, Analysis and Number Theory, and extend the Riemann-Zeta function to all numbers $s$ with real part not equal to 1. 
+
+\newline \indent
+    In 1859, following the death of predecessor, Dirichlet, Riemann was made corresponding member of the Berlin Academy. This was the highest honor for a mathematician in Germany at the time.  It was customary to crown this achievement with the submission of an original paper to the Academy. For this, he submitted a paper on "the number of primes less than a given quantity." 
+    \newline \indent 
+In the paper, Riemann proves a the validity of a formula that was first postulated by Euler in 1749. The formula allows us to stretch the domain of the Riemann-zeta function. The formula is written as follows:
+\begin{align*}
+    \zeta(1-s) = 2^{1-s}\pi^{-s}\sin{\Bigg(\frac{1-s}{2}\pi}\Bigg)\big(s-1\big)!\zeta(s) .
+\end{align*}
+Therefore, our new and improved Riemann-zeta function has a values everywhere except where $s=1$.
+\newline \indent
+On the fourth page of his paper, Riemann states what became known as the Riemann Hypothesis. It states that all non-trivial zeroes of the (new and improved) Riemann-zeta function have real part equal to $1/2$. There are hundreds of mathematical theorems that begin with the assumption that the Riemann-Hypothesis is true. The problem has gripped mathematicians of the last two centuries. Someone asked the prolific 19th century mathematician, David Hilbert, what he would do if he were awoken after centuries of sleep. His answer was, "I would ask if anyone had proven the Riemann Hypothesis." 
+ \newline \indent
+Fully exploring the Riemann Hypothesis is beyond the scope of the paper. However, in the spirit of understanding how elemental the Riemann-zeta function is, we will take a peek at the beginning of Riemann's famous paper. The title, as we have mentioned, is on "the number of primes less than a given quantity." What does the Riemann-zeta function have to do with prime numbers? 
+\newline \indent
+Riemann begins his paper with an observation made by (you guessed it) Euler. Which is stated concisely and beautifully as follows:
+\begin{align*}
+    \prod \frac{1}{1 - \frac{1}{p^s}} = \sum \frac{1}{n^s}.
+\end{align*}
+The left hand side is an infinite product involving the prime numbers, and the right hand side is $\zeta(s)$. In "Prime Obsession" John Derbyshire coined this the "golden key" that yokes Number Theory and Analysis. The key, he says, was passed to him from a lineage of Swiss and German mathematicians, but was not properly turned until Riemann's notorious paper. 
+\cite{MR2063737}. 
+\newline \indent
+The Riemann Hypothesis has vexed the greatest mathematical minds  since Riemann published his paper "on the number of primes less than a given quantity" in 1859. Its proof, or disproof, would have wide ranging consequences across mathematics and physics. To this day, the pursuit continues in the spirit of David Hilbert, who was himself obsessed with the Riemann Hypothesis. In opposition to a popular, and defeatist, philosophy of his time, and ours, that some things are intrinsically unknowable, Hilbert gave an address on German radio. He ended his address with six words that are as powerful as any in scientific history. Those six words, that follow, are engraved on his memorial stone in G\"{o}ttingen: "we must know, we shall know." 
+
+
+
+
+
+
+\newpage
+\begin{bibdiv}
+\begin{biblist}
+\bib{MR4071523}{collection}{
+   title={Elementary Real Analysis},\   author={Bruckner, Andrew},
+   author={Thompson, Brian},
+   author={Bruckner, Judith},
+   publisher={Princeton-Hall},
+   date={[2008] \copyright 2001},
+   isbn={0-13-019075-61},
+}
+
+\bib{MR2916494}{article}{
+   author={Benko, David},
+   title={The Basel problem as a telescoping series},
+   journal={College Math. J.},
+   volume={43},
+   date={2012},
+   number={3},
+   pages={244--250},
+   issn={0746-8342},
+   review={\MR{2916494}},
+   doi={10.4169/college.math.j.43.3.244},
+}
+
+\bib{MR2793174}{article}{
+   author={Scheufens, Ernst E.},
+   title={From Fourier series to rapidly convergent series for zeta(3)},
+   journal={Math. Mag.},
+   volume={84},
+   date={2011},
+   number={1},
+   pages={26--32},
+   issn={0025-570X},
+   review={\MR{2793174}},
+   doi={10.4169/math.mag.84.1.026},
+}
+\bib{MR2063737}{book}{
+   author={Derbyshire, John},
+   title={Prime obsession},
+   note={Bernhard Riemann and the greatest unsolved problem in mathematics;
+   Reprint of the 2003 original [J. Henry Press, Washington, DC;
+   MR1968857]},
+   publisher={Plume, New York},
+   date={2004},
+   pages={xvi+422},
+   isbn={0-452-28525-9},
+   review={\MR{2063737}},
+}
+	
+\bib{basel}{book}{
+   author={Gossman, Lionel},
+   title={Geneva, Zurich, Basel},
+   publisher={Princeton University Press},
+   date={1994},
+   pages={66-97},
+   doi={10.2307/j.ctt7zvxqj.8},
+}
+\bib{MR2422949}{article}{
+   author={Apostol, Tom M.},
+   title={A primer on Bernoulli numbers and polynomials},
+   journal={Math. Mag.},
+   volume={81},
+   date={2008},
+   number={3},
+   pages={178--190},
+   issn={0025-570X},
+   review={\MR{2422949}},
+   doi={10.1080/0025570x.2008.11953547},
+}
+	
+\end{biblist}
+\end{bibdiv}
+\end{document}
+
+

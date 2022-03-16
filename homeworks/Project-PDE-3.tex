@@ -1,0 +1,183 @@
+\documentclass[12pt,oneside]{amsart}
+
+\title{MATH 536 Project 3}
+\author{James Rushing}
+\date{03/20/20}
+
+% Homework template by Zach Teitler
+% Public domain, free to use and modify for any purpose
+% v1.0 2020-01-13
+
+% Packages
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage[letterpaper,margin=1.5in]{geometry}
+\usepackage[pagebackref]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar}
+\usepgflibrary{shapes.geometric}
+\usetikzlibrary{calc}
+\usepackage{calrsfs}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+
+% Extra space between lines
+
+\linespread{2.0}
+
+
+
+% Theorems, lemmas, etc.
+
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{claim}[equation]{Claim}
+\newtheorem{lemma}[equation]{Theorem}
+\newtheorem{corollary}[equation]{Theorem}
+\newtheorem{conjecture}[equation]{Conjecture}
+\newtheorem{question}[equation]{Question}
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[equation]{Definition}
+
+\theoremstyle{remark}
+
+\newtheorem{exer}{Exercise}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem{example}[equation]{Example}
+
+\numberwithin{equation}{exer}
+
+
+% Answers
+
+% Use "proof" for proof exercises!
+% Use "answer" for question (non-proof) exercises
+
+\newenvironment{answer}{\bigskip\noindent\emph{Answer.}}{\hfill$\diamond$\newline}
+
+
+% Symbols
+\DeclareMathAlphabet{\pazocal}{OMS}{zplm}{m}{n}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\Lb}{\pazocal{L}}
+
+
+
+\begin{document}
+\maketitle
+\begin{exer} 
+Rod with zero temperature at the endpoints.\newline
+\begin{answer}
+With 
+\begin{equation*}
+    f(x) = \begin{cases}
+               2               & 0 < x \leq \frac{1}{2}\\
+               x-1               & \frac{1}{2} <x <1
+           \end{cases}
+\end{equation*}
+and $k=1$ and $L=1$ our coefficients are calculated as follows:
+\begin{align*}
+    b_n = \frac{2}{L}\int_{0}^{L} f(x) \sin \big(\frac{n \pi x}{L}\big) = 
+    2\Bigg[2\int_{0}^{\frac{1}{2}} \sin (n \pi x) dx +\int_{\frac{1}{2}}^{1} (x-1) \sin (n \pi x) dx \Bigg]\\
+    = 2 \Bigg[-\frac{2}{n \pi} \Big[\cos(n \pi x)\Big]_0^{\frac{1}{2}} - \frac{1}{n \pi} \int_{\frac{1}{2}}^1 (x-1)( \cos (n \pi x))' dx \Bigg]\\
+    =\frac{2}{n \pi}\Bigg[ -2 \Big[ \cos\big(\frac{n \pi}{2}\big) - \ \cos(0)\Big] - \Bigg( \Big[(x-1)\cos (n \pi x) \Big]_{\frac{1}{2}}^1 - \int_{\frac{1}{2}}^1 \cos(n \pi x) dx \Bigg) \Bigg]\\
+    = \frac{2}{n \pi}\Bigg[ -2\cos(\frac{n \pi}{2}\big) + 2 - \Bigg(0 + \frac{1}{2} \cos(\frac{n \pi}{2})- \frac{1}{n \pi}\Big[\sin(n \pi x)\Big]_{\frac{1}{2}}^1\Bigg)\Bigg] \\
+    =\frac{2}{n \pi}\Bigg[ -2\cos(\frac{n \pi}{2}\big) + 2 - \frac{1}{2} \cos(\frac{n \pi}{2}) + \frac{1}{n \pi}\Big[0 - \sin (\frac{n \pi}{2})\Big]
+    \Bigg]\\
+    =\frac{2}{n \pi}\Bigg[2 -\frac{5}{2}\cos(\frac{n \pi}{2}) - \frac{1}{n \pi}\sin (\frac{n \pi}{2})\Bigg].
+\end{align*}
+\indent\newline
+Therefore, 
+\begin{align*}
+    u(x,t) = \sum_{n=1}^{\infty} b_n \sin (\frac{n \pi x}{L}) e^{-k(n \pi / L)^2t}\\
+    = \sum_{n=1}^{\infty}     \frac{2}{n \pi}\Bigg[2 -\frac{5}{2}\cos(\frac{n \pi}{2}) - \frac{1}{n \pi}\sin (\frac{n \pi}{2})\Bigg] \sin (n \pi x) e^{-(n \pi)^2t}
+\end{align*}
+\end{answer}
+\end{exer}
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\indent \newline
+
+\begin{exer}
+Rod with insulated endpoints. 
+\end{exer}
+\begin{answer}
+With 
+\begin{equation*}
+    f(x) = \begin{cases}
+               1               & 0 < x \leq \frac{1}{2}\\
+               x+1               & \frac{1}{2} <x <1
+           \end{cases}
+\end{equation*}
+and $k=L=1$ we calculate the coefficients as follows:
+\begin{align*}
+    a_0 = 2\int_0^L f(x) dx = 2\Bigg[ \int_0^{\frac{1}{2}} 1 dx + \int_\frac{1}{2}^{1} (x+1) dx\Bigg]\\
+    =2 \Bigg[ \big[x\big]_0^{\frac{1}{2}} + \Big[\frac{x^2}{2} + x\Big]_{\frac{1}{2}}^1\Bigg]     = \frac{11}{4}
+\end{align*}
+\begin{align*}
+    a_n = \frac{2}{L}\int_{0}^{L} f(x) \cos \big(\frac{n \pi x}{L}\big) = 2 \Bigg[\int_{0}^{\frac{1}{2}} \cos(n \pi x) dx + \int_{\frac{1}{2}}^1 (x+1) \cos(n \pi x)dx\Bigg]\\
+    = 2 \Bigg[ \frac{1}{n \pi} \Big[ \sin (n \pi x)\Big]_0^{\frac{1}{2}} + \frac{1}{n \pi}\int_{\frac{1}{2}}^1 (x+1)(\sin(n \pi x))'dx\Bigg] \\
+    =\frac{2}{n \pi} \Bigg[ \sin(\frac{n \pi}{2}) + \Big[(x+1)\sin(n \pi x)\Big]_{\frac{1}{2}}^1 - \int_{\frac{1}{2}}^1 \sin(n \pi x)dx\Bigg]\\
+    = \frac{2}{n \pi} \Bigg[ \sin(\frac{n \pi}{2}) - \frac{3}{2}\sin(\frac{n \pi}{2}) + \frac{1}{n \pi} \Big[\cos(n \pi x) dx\Big]_{\frac{1}{2}}^1 \Bigg]\\
+    = \frac{2}{n \pi} \Bigg[ \sin(\frac{n \pi}{2}) - \frac{3}{2}\sin(\frac{n \pi}{2}) + \frac{1}{n \pi} \Big((-1)^n - \cos(\frac{n \pi}{2})\Big)\Bigg]\\
+    =\frac{2}{n \pi} \Bigg[ -\frac{1}{2} \sin(\frac{n \pi}{2}) + \frac{1}{n \pi} (-1)^n - \frac{1}{n \pi}\cos(\frac{n \pi}{2})\Bigg].
+\end{align*}
+Therefore,
+\begin{align*}
+        u(x,t) = \frac{1}{2}a_0 + \sum_{n=1}^{\infty} a_n \cos (\frac{n \pi x}{L}) e^{-k(n \pi / L)^2t}\\
+        = \frac{11}{8}+\sum_{n=1}^{\infty}\frac{2}{n \pi} \Big[ -\frac{1}{2} \sin(\frac{n \pi}{2}) + \frac{1}{n \pi} (-1)^n - \frac{1}{n \pi}\cos(\frac{n \pi}{2})\Big]\cos(n \pi x) e^{-(n \pi)^2t}
+\end{align*}
+\end{answer}
+\newpage
+\begin{exer}
+Vibrating string with fixed endpoints
+\end{exer}
+\begin{answer}
+With $h_1(x)=x+1$ and
+\begin{equation*}
+    h_2(x) = \begin{cases}
+               -1               & 0 < x \leq \frac{1}{2}\\
+               2x               & \frac{1}{2} <x <1
+           \end{cases}
+\end{equation*}
+and $c=L=1$ we calculate $b_{1n},b_{2n}$ as follows:
+\begin{align*}
+    b_{1n} = \frac{2}{L} \int_0^L h_1(x) \sin (\frac{n \pi x}{L}) dx = 2 \int_0^1(x+1)\sin(n \pi x) dx \\
+    = -\frac{2}{n \pi} \int_0^1 (x+1) (\cos (n \pi x))'dx = -\frac{2}{n \pi}\Bigg[\Big[(x+1)\cos(n \pi x)\Big]_0^1 - \int_0^1 \cos(n \pi x) dx \Bigg]\\
+    = -\frac{2}{n \pi} \Bigg[2\cos(n \pi) - \cos(0) - \frac{1}{n \pi} \Big[\sin(n \pi x)\Big]_0^1\Bigg] = -\frac{2}{n \pi}\Big[2(-1)^n - 1\Big] = \frac{2}{n \pi}\Big[1-2(-1)^n\Big]\\
+    b_{2n} = \frac{2}{n \pi c}\int_0^Lh_2(x) \sin(\frac{n \pi x}{L}) dx = \frac{2}{n \pi} \Bigg[-\int_0^{\frac{1}{2}}\sin(n \pi x) + \int_{\frac{1}{2}}^1 2x \sin(n \pi x) dx \Bigg]\\
+    = \frac{2}{n \pi}\Bigg[ \frac{1}{n \pi}\Big[\cos(n \pi x)\Big]_0^{\frac{1}{2}} - \frac{1}{n \pi}\int_{\frac{1}{2}}^1 2x(\cos(n \pi x)))'dx\Bigg]\\
+    = \frac{2}{n^2 \pi^2} \Bigg[\Big[\cos(\frac{n \pi}{2}) - \cos(0)\Big] - \Bigg(\Big[2x\cos(n \pi x)\Big]_{\frac{1}{2}}^1 -2 \int_{\frac{1}{2}}^1 \cos(n \pi x)dx\Bigg)\Bigg]\\
+    = \frac{2}{n^2 \pi^2}\Bigg[\cos(\frac{n \pi}{2}) - 1 - \Bigg(2(-1)^n - \cos(\frac{n \pi}{2}) - \frac{2}{n \pi} \Big[\sin(n \pi x)\Big]_{\frac{1}{2}}^1 \Bigg)\Bigg]\\
+    =\frac{2}{n^2 \pi^2}\Bigg[2\cos(\frac{n \pi}{2}) - 1 -2(-1)^n + \frac{2}{n \pi} \sin(\frac{n \pi}{2})\Bigg].
+\end{align*}
+Therefore, 
+\begin{align*}
+    u(x,t) = \sum_{n=1}^\infty \sin\frac{n \pi x}{L}\Big(b_{1n}\cos\frac{n \pi c t}{L} + b_{2n}\sin\frac{n \pi c t}{L}\Big)\\
+    =\sum_{n=1}^\infty \sin(n \pi x)\Bigg(\frac{2}{n \pi}\Big[1-2(-1)^n\Big]\cos(n \pi t)\\ + \frac{2}{n^2 \pi^2}\Bigg[2\cos(\frac{n \pi}{2}) - 1 -2(-1)^n + \frac{2}{n \pi} \sin(\frac{n \pi}{2})\Bigg]\sin(n \pi t)\Bigg).
+\end{align*}
+\end{answer}
+\end{document}
+ 

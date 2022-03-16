@@ -1,0 +1,141 @@
+\documentclass[12pt,oneside]{amsart}
+
+\title{Math 414/514 Homework 4}
+\author{James Rushing}
+\date{02/15/20}
+
+% Homework template by Zach Teitler
+% Public domain, free to use and modify for any purpose
+% v1.0 2020-01-13
+
+% Packages
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage[letterpaper,margin=1.5in]{geometry}
+\usepackage[pagebackref]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+
+% Extra space between lines
+
+\linespread{1.2}
+
+
+
+% Theorems, lemmas, etc.
+
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{claim}[equation]{Claim}
+\newtheorem{lemma}[equation]{Theorem}
+\newtheorem{corollary}[equation]{Theorem}
+\newtheorem{conjecture}[equation]{Conjecture}
+\newtheorem{question}[equation]{Question}
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[equation]{Definition}
+
+\theoremstyle{remark}
+
+\newtheorem{exer}{Exercise}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem{example}[equation]{Example}
+
+\numberwithin{equation}{exer}
+
+
+% Answers
+
+% Use "proof" for proof exercises!
+% Use "answer" for question (non-proof) exercises
+
+\newenvironment{answer}{\bigskip\noindent\emph{Answer.}}{\hfill$\diamond$\newline}
+
+
+% Symbols
+
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbZ}{\mathbb{Z}}
+
+
+
+
+\begin{document}
+\maketitle
+
+\begin{exer} (6.8.9)
+
+A careless student claims that the closure of a set with measure zero also has measure zero. 
+\end{exer}
+
+
+
+\
+
+
+
+
+\begin{answer}
+It is curious, but it is known, that the set of all rational numbers has measure zero. We also know that that every irrational number is an accumulation point of the rational numbers. So the closure of the rationals includes all irrational numbers, which does not have measure zero. The careless student is woefully incorrect. 
+\end{answer}
+
+
+\newpage
+
+\begin{exer} (8.5.5)
+
+Let $f$ be continuous on $[1,\infty]$ such that $\lim_{x \to \infty} f(x) = \alpha$. Show that if the integral $\int_1^\infty f(x) dx \to A$ converges then $\alpha = 0$.
+
+\end{exer}
+
+\begin{proof}
+    Assume the above condition and assume $\alpha \neq 0$. In the case where $\alpha > 0$ there must exists some number $a$ such that if $x>a$ then $f(x) >0$.  This tells us that 
+\begin{align*}
+    \int_a^\infty f(x)dx = \lim_{y \to \infty} \int_ a^\infty f(x) dx \to \infty.
+\end{align*}
+However,  we also know that 
+\begin{align*}
+    \int_1^\infty f(x) = \int_1^a f(x)dx + \int_a^\infty f(x) dx \to A.
+\end{align*}
+and this is a contradiction. Now assume $\alpha < 0$, then we have some number $a$ such that if $x>a$ then $f(x)<0$ and therefore,
+\begin{align*}
+    \int_a^\infty f(x)dx = \lim_{y \to \infty} \int_ a^\infty f(x) dx \to -\infty.
+\end{align*}
+Once again this stands in contradiction to our assumption that the following integral converges:
+\begin{align*}
+    \int_1^\infty f(x) = \int_1^a f(x)dx + \int_a^\infty f(x) dx \to A.
+\end{align*}
+Our assumption that $\alpha \neq 0$ must have been false.
+\end{proof}
+
+\newpage
+
+
+
+\begin{exer}
+
+For what values of $p,q$ are the integrals
+\begin{align*}
+    \int_0^1 \frac{\sin{x}}{x^p} dx \indent \text{and} \indent \int_0^1 \frac{(\sin{x})^q}{x}dx
+\end{align*}
+Riemann integrals, convergent improper Riemann integrals, or divergent improper Riemann integrals?
+
+\end{exer}
+
+\begin{answer}
+For the integral on the left, $\sin{x}$ is a bounded, continuous function. We will investigate $x^{-p}$ to determine what kind of integral we are dealing with. We see that for $p<0$ we have a good old-fashioned Riemann integral with only one discontinuity at 0, but it remains bounded on that interval. For $0 < p < 1$, we see a convergent improper Riemann integral. For $p>0$ we see a divergent improper Riemann integral for which we see extreme asymptotic behavior that can't be wrangled in with $\delta$.
+\newline \indent For the second integral we have divergent improper Riemann integrals for $q \leq0$, convergent improper integral for $0<q<1$, and old-fashioned Riemann integrals for $q\geq0$.
+\end{answer}
+
+
+\end{document}

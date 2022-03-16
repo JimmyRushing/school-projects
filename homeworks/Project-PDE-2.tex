@@ -1,0 +1,190 @@
+\documentclass[12pt,oneside]{amsart}
+
+\title{MATH 536 Project 2}
+\author{James Rushing}
+\date{02/28/20}
+
+% Homework template by Zach Teitler
+% Public domain, free to use and modify for any purpose
+% v1.0 2020-01-13
+
+% Packages
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage[letterpaper,margin=1.5in]{geometry}
+\usepackage[pagebackref]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar}
+\usepgflibrary{shapes.geometric}
+\usetikzlibrary{calc}
+\usepackage{calrsfs}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+
+% Extra space between lines
+
+\linespread{2.0}
+
+
+
+% Theorems, lemmas, etc.
+
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{claim}[equation]{Claim}
+\newtheorem{lemma}[equation]{Theorem}
+\newtheorem{corollary}[equation]{Theorem}
+\newtheorem{conjecture}[equation]{Conjecture}
+\newtheorem{question}[equation]{Question}
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[equation]{Definition}
+
+\theoremstyle{remark}
+
+\newtheorem{exer}{Exercise}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem{example}[equation]{Example}
+
+\numberwithin{equation}{exer}
+
+
+% Answers
+
+% Use "proof" for proof exercises!
+% Use "answer" for question (non-proof) exercises
+
+\newenvironment{answer}{\bigskip\noindent\emph{Answer.}}{\hfill$\diamond$\newline}
+
+
+% Symbols
+\DeclareMathAlphabet{\pazocal}{OMS}{zplm}{m}{n}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\Lb}{\pazocal{L}}
+
+
+
+\begin{document}
+\maketitle
+\begin{exer} 
+\indent\newline
+Consider the differential operator
+\begin{align*}
+    \Lb = 2 \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial x \partial t} - \frac{\partial^2}{\partial t^2}.
+\end{align*}
+First, we rewrite the middle operator as
+\begin{align*}
+-\frac{\partial}{\partial x \partial t} + 2\frac{\partial}{\partial t \partial x}
+\end{align*}
+then we observe the following steps:
+\begin{align*}
+    \Lb = 2 \frac{\partial^2}{\partial x^2}  -\frac{\partial}{\partial x \partial t} + 2\frac{\partial}{\partial t \partial x}- \frac{\partial^2}{\partial t^2}\\
+    = \frac{\partial}{\partial x}\Bigg(2\frac{\partial}{\partial x} - \frac{\partial}{\partial t}\Bigg) + \frac{\partial}{\partial x}\Bigg(2\frac{\partial}{\partial x} - \frac{\partial}{\partial t^2}\Bigg)\\
+    = \Bigg(\frac{\partial}{\partial x} + \frac{\partial}{\partial t}\Bigg)\Bigg(2\frac{\partial}{\partial x} - \frac{\partial}{\partial t}\Bigg).
+\end{align*}
+\end{exer}
+\newpage
+\indent \newline
+
+\begin{exer}
+Defining $\xi = -x + t$ and $\eta = \frac{x}{2} + t$ we have
+\begin{align*}
+    \frac{\partial y}{\partial t} 
+    = \frac{\partial \tilde{y}}{\partial t} \Big(\xi , \eta\Big)
+    =\frac{\partial \tilde{y}}{\partial t}\Big(-x + t,\frac{x}{2} + t \Big)
+    =\frac{\partial \tilde{y}}{\partial \xi} \cdot \frac{\partial \xi}{\partial t} + \frac{\partial \tilde{y}}{\partial \eta} \cdot \frac{\partial \eta}{\partial t}\\
+    =\frac{\partial \tilde{y}}{\partial \xi} \cdot (1) + \frac{\partial \tilde{y}}{\partial \eta} \cdot (1)
+    = \Big(\frac{\partial}{\partial \xi} +\frac{\partial}{\partial \eta}\Big) \tilde{y}
+\end{align*}
+\begin{align*}
+    \textbf{and}
+\end{align*}
+\begin{align*}
+    \frac{\partial y}{\partial x} 
+    = \frac{\partial \tilde{y}}{\partial x} \Big(\xi , \eta\Big)
+    =\frac{\partial \tilde{y}}{\partial x}\Big(-x + t,\frac{x}{2} + t \Big)
+    =\frac{\partial \tilde{y}}{\partial \xi} \cdot \frac{\partial \xi}{\partial x} + \frac{\partial \tilde{y}}{\partial \eta} \cdot \frac{\partial \eta}{\partial x}\\
+    =\frac{\partial \tilde{y}}{\partial \xi} \cdot (-1) + \frac{\partial \tilde{y}}{\partial \eta} \cdot \frac{1}{2} = \Big(-\frac{\partial}{\partial \xi} + \frac{1}{2} \frac{\partial}{\partial \eta}\Big)\tilde{y}.
+\end{align*}
+
+\end{exer}
+\newpage
+\indent \newline
+\begin{exer}
+Now we translate our operators from \emph{Exercise 1} in terms of $\xi$ and $\eta$ as follows:
+\end{exer}
+\begin{align*}
+    \frac{\partial}{\partial x} + \frac{\partial}{\partial t} = -\frac{\partial}{\partial \xi} + \frac{1}{2}\cdot \frac{\partial}{\partial \eta} + \frac{\partial}{\partial \xi} + \frac{\partial}{\partial \eta}
+    = \frac{3}{2}\cdot \frac{\partial}{\partial \eta}
+\end{align*}
+\begin{align*}
+    \textbf{and}
+\end{align*}
+\begin{align*}
+    2\frac{\partial}{\partial x} - \frac{\partial}{\partial t} 
+    = 2\Big(-\frac{\partial}{\partial \xi} + \frac{1}{2}\cdot \frac{\partial}{\partial \eta}\Big)-\Big(\frac{\partial}{\partial \xi} + \frac{\partial}{\partial \eta}\Big)\\
+    = -2\frac{\partial}{\partial \xi} + \frac{\partial}{\partial \eta} - \frac{\partial}{\partial \xi} - \frac{\partial}{\partial \eta}
+    =-3\frac{\partial}{\partial \xi}.
+\end{align*}
+\newpage
+\indent \newline
+\begin{exer}
+Writing our differential operator in terms of $\xi$ and $\eta$ gives
+\end{exer}
+\begin{align*}
+    \Lb
+    = \Bigg(\frac{\partial}{\partial x} + \frac{\partial}{\partial t}\Bigg)\Bigg(2\frac{\partial}{\partial x} - \frac{\partial}{\partial t}\Bigg) =  \Big(\frac{3}{2}\cdot \frac{\partial}{\partial \eta}\Big)\Big(-3\frac{\partial}{\partial \xi}\Big) = -\frac{9}{2}\frac{\partial}{\partial \eta}\frac{\partial}{\partial \xi}.
+\end{align*}
+With this, we have 
+\begin{align*}
+        2 \frac{\partial^2 y}{\partial x^2} + \frac{\partial^2 y}{\partial x \partial t} - \frac{\partial^2 y}{\partial t^2} =0\\
+        \implies  \Big(-\frac{9}{2}\frac{\partial}{\partial \eta}\frac{\partial}{\partial \xi}\Big)\tilde{y} = 0
+\end{align*}
+This tells us that the partial of $\tilde{y}$ in respect to $\xi$ is independent of $\eta$. Using this information we write it as a function of one variable and, using a dummy variable, we integrate as follows to reveal the the general form of $y(x,t)$:
+\begin{align*}
+    \frac{\partial \tilde{y}}{\partial \xi} = h(\xi)\\
+    \implies \int_0^\xi \frac{\partial \tilde{y}}{\partial \xi'} d\xi'= \int_0^\xi h(\xi')d\xi'\\
+    \implies \Big[\tilde{y}(\xi,\eta)\Big]_0^\xi = \int_0^\xi h(\xi')d\xi'\\
+    \implies y(x,t) = \tilde{y}(\xi,\eta) = \tilde{y}(0,\eta) + \int_0^\xi h(\xi')d\xi' \\
+    =f(\eta) + g(\xi) = f\big(\frac{x}{2} + t \big) + g (-x+t).
+\end{align*}
+\newpage
+\begin{exer}
+Take initial conditions to be the following:
+\begin{align*}
+    y(x,0)= \sin{x}\\
+    y_t(x,0) = 0.
+\end{align*}
+\end{exer}
+\begin{answer}
+Expressly from our derivation of $y(x,t)$ we have that 
+\begin{align*}
+    y(x,0) = f(\frac{x}{2}) + g(-x) = 0.
+\end{align*}
+Now, to satisfying our second initial condition we employ the FTC to reveal a second linear combination of $f$ and $g$. 
+\begin{align*}
+    y_t(x,0) = 0 = f'(\frac{x}{2} + 0) + g'(-x + 0) = f'(\frac{x}{2}) + g'(-x)\\
+    \implies \int 0 = \int f'(\frac{x}{2}) + \int g'(-x)\\
+    \implies C = 2f(\frac{x}{2}) - g(-x)
+\end{align*}
+for some constant $C$. Combing our two linear combinations of $f$ and $g$ gives us 
+\begin{align*}
+    f(\frac{x}{2}) =\frac{1}{3}(C + \sin{x}) \indent \textbf{and} \indent
+    g(x) = \sin{x} -\frac{2}{3}(C + \sin{x})\\
+    \implies y(x,t) = \frac{1}{3}(C + \sin{(\frac{x}{2} + t})) + \sin{(-x + t)} -\frac{2}{3}(C + \sin{(-x + t)}).
+\end{align*}
+\end{answer}
+
+\end{document}
+ 

@@ -1,0 +1,190 @@
+\documentclass[12pt,oneside]{amsart}
+
+\title{Math 414/514 Homework 3}
+\author{James Rushing}
+\date{02/07/20}
+
+% Homework template by Zach Teitler
+% Public domain, free to use and modify for any purpose
+% v1.0 2020-01-13
+
+% Packages
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage[letterpaper,margin=1.5in]{geometry}
+\usepackage[pagebackref]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+
+% Extra space between lines
+
+\linespread{1.2}
+
+
+
+% Theorems, lemmas, etc.
+
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{claim}[equation]{Claim}
+\newtheorem{lemma}[equation]{Theorem}
+\newtheorem{corollary}[equation]{Theorem}
+\newtheorem{conjecture}[equation]{Conjecture}
+\newtheorem{question}[equation]{Question}
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[equation]{Definition}
+
+\theoremstyle{remark}
+
+\newtheorem{exer}{Exercise}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem{example}[equation]{Example}
+
+\numberwithin{equation}{exer}
+
+
+% Answers
+
+% Use "proof" for proof exercises!
+% Use "answer" for question (non-proof) exercises
+
+\newenvironment{answer}{\bigskip\noindent\emph{Answer.}}{\hfill$\diamond$\newline}
+
+
+% Symbols
+
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbZ}{\mathbb{Z}}
+
+
+
+
+\begin{document}
+\maketitle
+
+\begin{exer}
+
+For what values of $p$ does $\int_1^{\infty}x^{-p}dx$ converge?
+\end{exer}
+
+
+
+\
+
+
+
+
+\begin{answer}
+
+To avoid dividing by 0 we treat the case where $p=1$ separately. By Definition 8.11 we have 
+\begin{align*}
+   \int_1^\infty\frac{1}{x}dx = \lim_{y \to \infty} \int_1^y \frac{1}{x}dx=\lim_{y \to \infty}(\ln(y)-\ln(1)) \to \infty .
+\end{align*}
+In general we have the following: 
+\begin{align*}
+    \int_1^\infty x^{-p}dx= \lim_{y \to \infty}\int_1^y x^{-p}dx =\lim_{y\to\infty}\Bigg[\frac{x^{-p+1}}{-p+1}\Bigg]_1^y \\
+    = \lim_{y \to \infty} \Big(\frac{1}{1-p}\Big)\Big[y^{1-p}-1\Big].
+\end{align*}
+
+We see from this that this integral converges for values p where $1-p<0 \implies p>1$ .
+\end{answer}
+
+
+\newpage
+\indent \newline
+\begin{exer}
+Show that $\int_0^\infty x^n e^{-x} dx = n!.$
+\end{exer}
+
+
+
+
+\begin{proof}
+
+By induction, Where $n=1$ we have 
+\begin{align*}
+    \int_0^\infty x^1 e^{-x}dx=\int_0^\infty x(-e^{-x})'dx = [-xe^{-x}]_0^\infty + \int_0^\infty e^{-x}dx\\
+    = [0-0] + [-e^{-x}]_0^\infty= -[0 - \frac{1}{e^0}] =1 =1!.
+\end{align*}
+  Now assuming the condition holds for $n$ we show that it holds for $n+1$:
+\begin{align*}
+    \int_o^\infty x^{n+1} e^{-x}dx = \int_0^{\infty} x^{n+1}(-e^{-x})'dx = [-x^{n+1}e^{-x}]_0^{\infty} + (n+1)\int_0^\infty x^n e^{-x}dx\\
+    = [0 - 0] + (n+1)n! = (n+1)!.
+\end{align*}
+
+\end{proof}
+
+\newpage
+\indent\newline
+
+
+\begin{exer}
+
+If $f$ is Riemann integrable on $[a,b]$ show that for every $\epsilon>0$ there are two step functions where 
+\begin{align*}
+    L(x)\leq f(x)\leq U(x)
+\end{align*}
+such that
+\begin{align*}
+    \int_a^b(U(x)-L(x))dx<\epsilon.
+\end{align*}
+
+\end{exer}
+
+\begin{answer}
+
+Because $f$ is Riemann integrable on $[a,b]$ we have a partition $[x_0,x_1],...,[x_{n-1},x_n]$ of $[a,b]$ such that for every $\epsilon > 0$ 
+
+\begin{align*}
+    \sum_{k=1}^n \omega f([x_{k-1},x_k])(x_k-x_{k-1})< \epsilon.
+\end{align*}
+
+Now for that partition we take $\{a_0,...,a_n\}$ to be the points where  $a_k\in[x_{k-1},x_k]$ and $f(a_k)=\inf_{x\in[x_{k-1},x_k]} f(x)$ and the points $\{b_0,...,b_n\}$ to be the points where $b_k\in[x_{k-1},x_k]$ and $f(b_k)=\sup_{x\in[x_{k-1},x_k]} f(x)$. This provides the following step functions:
+\begin{equation*}
+    L(x) = \begin{cases}
+               f(a_1)               & x\in[x_0,x_1]\\
+               f(a_2)               & x\in[x_1,x_2]\\
+               .              & .\\
+               .               & .\\
+               .               & .\\
+               f(a_n) & x\in[x_{n-1},x_n]
+           \end{cases}
+\end{equation*}
+\begin{equation*}
+    U(x) = \begin{cases}
+               f(b_1)               & x\in[x_0,x_1]\\
+               f(b_2)               & x\in[x_1,x_2]\\
+               .              & .\\
+               .               & .\\
+               .               & .\\
+               f(b_n) & x\in[x_{n-1},x_n]
+           \end{cases}
+\end{equation*}
+\indent\newline
+where  $L(x)\leq f(x)\leq U(x)$. Moreover, 
+
+\begin{align*}
+    \sum_{k=1}^n \omega f([x_{k-1},x_k])(x_k-x_{k-1}) 
+    = \Bigg|\sum_{k=1}^n\Big[\sup_{x\in[x_{k-1},x_k]} f(x) - \inf_{x\in[x_{k-1},x_k]} f(x)\Big](x_k-x_{k-1})\Bigg|\\
+    =\Bigg|\sum_{k=1}^n U(x)-L(x)(x_k-x_{k-1})\Bigg| =\Bigg|\sum_{k=1}^n U(x)(x_k-x_{k-1})-\sum_{k=1}^n L(x)(x_k-x_{k-1})\Bigg| < \epsilon.
+\end{align*}
+\newline
+Because step functions are integrable(def 8.18) the above inequality meets the Cauchy criteria and that we can write  $\sum_{k=1}^n L(x)(x_k-x_{k-1}) = \int_a^b L(x)dx$ and similarly $\sum_{k=1}^n U(x)(x_k-x_{k-1}) = \int_a^b U(x)dx$. Keeping in mind that we can drop the absolute value because $L(x)\leq f(x)\leq U(x)$ we get the following desired result:
+\begin{align*}
+    \sum_{k=1}^n U(x)(x_k-x_{k-1})-\sum_{k=1}^n L(x)(x_k-x_{k-1}) = \int_a^b U(x)dx -\int_a^b L(x)dx \\= \int_a^b (U(x)-L(x))dx < \epsilon.
+\end{align*}
+\end{answer}
+
+
+\end{document}

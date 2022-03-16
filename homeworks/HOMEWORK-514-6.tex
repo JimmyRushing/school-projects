@@ -1,0 +1,139 @@
+\documentclass[12pt,oneside]{amsart}
+
+\title{Math 414/514 Homework 6}
+\author{James Rushing}
+\date{03/20/20}
+
+% Homework template by Zach Teitler
+% Public domain, free to use and modify for any purpose
+% v1.0 2020-01-13
+
+% Packages
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage[letterpaper,margin=1.5in]{geometry}
+\usepackage[pagebackref]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+
+% Extra space between lines
+
+\linespread{1.6}
+
+
+
+% Theorems, lemmas, etc.
+
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{claim}[equation]{Claim}
+\newtheorem{lemma}[equation]{Theorem}
+\newtheorem{corollary}[equation]{Theorem}
+\newtheorem{conjecture}[equation]{Conjecture}
+\newtheorem{question}[equation]{Question}
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[equation]{Definition}
+
+\theoremstyle{remark}
+
+\newtheorem{exer}{Exercise}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem{example}[equation]{Example}
+
+\numberwithin{equation}{exer}
+
+
+% Answers
+
+% Use "proof" for proof exercises!
+% Use "answer" for question (non-proof) exercises
+
+\newenvironment{answer}{\bigskip\noindent\emph{Answer.}}{\hfill$\diamond$\newline}
+
+
+% Symbols
+
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\itt}{\int_0^\pi}
+\newcommand{\smm}{\sum_{n=1}^{\infty}}
+\newcommand{\ite}{\int_0^1}
+
+\begin{document}
+\maketitle
+
+\begin{exer} (9.5.2)
+Prove that $\int_0^\pi \sum_{n=1}^\infty \frac{\sin{nx}}{n x}dx 
+= \sum_{n=1}^\infty \frac{2}{(2n-1)^3}$
+\end{exer}
+
+
+\begin{proof}
+
+\indent As we have seen in example 9.18, because $\sin{(nx)} \leq 1$ we have that 
+\begin{align*}
+    \bigg|\frac{\sin{nx}}{n^2}\bigg| \leq \frac{1}{n^2} \indent \forall x \in \mathbb{R}.
+\end{align*}
+Therefore, by the M-test $ \sum_{n=1}^\infty \frac{\sin{nx}}{n x}dx $ converges for all $x \in \mathbb{R}$.
+
+Knowing that the integrand converges we can move the integral through the sum and integrate term-by-term as follows:
+\begin{align*}
+        \itt \smm \frac{\sin{nx}}{n^2} dx = \smm \itt \frac{\sin nx}{n^2} dx 
+        = \smm \frac{1}{n^2} \itt \sin{nx}dx \\
+        =\smm -\frac{1}{n^3}\big[ \cos{nx}\big]_0^\pi =
+        \smm - \frac{1}{n^3}\big[\cos{n \pi} - \cos{0} \big] \\
+        = \smm -\frac{1}{n^3} \big[(-1)^n - 1\big] = \smm \frac{(-1)^{n+1} + 1}{n^3} \\
+        = \frac{2}{1^3} + 0 + \frac{2}{3^3} + 0 +\frac{2}{5^3} +0 + \frac{2}{7^3} = \smm \frac{2}{(2n - 1)^3}.
+\end{align*}
+\end{proof}
+
+
+
+
+
+
+
+
+
+\newpage \indent \newline
+\begin{exer} (10.4.4)
+\indent Show that 
+\begin{align*}
+    f(x) = \ite \frac{1 - e^{-sx}}{s} ds =
+    \sum_{k=1}^\infty \frac{(-1)^{k-1}x^k}{k(k!)} .
+\end{align*}
+\end{exer}
+\begin{answer}
+\indent To begin, we will show that the $kth$ derivative of $f(x)$ can be written as 
+\begin{align*}
+    f^k(x) = \ite (-1)^{k-1} s^{k-1} e^{-sx}ds.
+\end{align*}
+By induction, where $k=1$ we have
+\begin{align*}
+    f'(x) = \ite \big(\frac{d}{dx}s^{-1} - \frac{d}{dx} s^{-1} e^{-sx} \big)ds = \ite e^{-sx}ds = \ite (-1)^{1-1} s ^{1-1} e^{-sx}
+\end{align*}
+and assuming the equality hold for $k$ we have for that for $k+1$
+\begin{align*}
+    f^{k+1}(x) = \frac{d}{dx} \ite (-1)^{k-1}s^{k-1} e^{-sx}ds = \ite (-s)(-1)^{k-1}s^{k-1} e^{-sx}ds \\
+    = \ite (-1)^{k-1 +1}s^{k-1+1} e^{-sx}ds = \ite (-1)^{(k+1) -1}s^{(k+1)-1} e^{-sx}ds.
+\end{align*}    
+By theorem 10.17 we have that the coefficients of the power series around $x=0$ for $f(x)$ are as follows:
+\begin{align*}
+    a_k=\frac{f^k(0)}{k!} \indent \textit{where}\\
+    f^k(0) = \ite (-1)^{k-1}s^{k-1} e^0 ds = (-1)^{k-1} \bigg[\frac{s^{k-1+1}}{k-1+1}\bigg]_0^1 = \frac{(-1)^{k-1}}{k}\\
+    \implies a_k = \frac{(-1)^{k-1}}{k(k!)}.
+\end{align*}
+Which was to be shown.
+\end{answer}
+\end{document}

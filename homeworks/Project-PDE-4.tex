@@ -1,0 +1,161 @@
+\documentclass[12pt,oneside]{amsart}
+
+\title{MATH 536 Project 4}
+\author{James Rushing}
+\date{04/22/20}
+
+% Homework template by Zach Teitler
+% Public domain, free to use and modify for any purpose
+% v1.0 2020-01-13
+
+% Packages
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage[letterpaper,margin=1.5in]{geometry}
+\usepackage[pagebackref]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar}
+\usepgflibrary{shapes.geometric}
+\usetikzlibrary{calc}
+\usepackage{calrsfs}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+
+% Extra space between lines
+
+\linespread{2.0}
+
+
+
+% Theorems, lemmas, etc.
+
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{claim}[equation]{Claim}
+\newtheorem{lemma}[equation]{Theorem}
+\newtheorem{corollary}[equation]{Theorem}
+\newtheorem{conjecture}[equation]{Conjecture}
+\newtheorem{question}[equation]{Question}
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[equation]{Definition}
+
+\theoremstyle{remark}
+
+\newtheorem{exer}{Exercise}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem{example}[equation]{Example}
+
+\numberwithin{equation}{exer}
+
+
+% Answers
+
+% Use "proof" for proof exercises!
+% Use "answer" for question (non-proof) exercises
+
+\newenvironment{answer}{\bigskip\noindent\emph{Answer.}}{\hfill$\diamond$\newline}
+
+
+% Symbols
+\DeclareMathAlphabet{\pazocal}{OMS}{zplm}{m}{n}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\Lb}{\pazocal{L}}
+
+
+
+\begin{document}
+\maketitle
+\begin{exer} 
+\newline
+\begin{answer}
+
+\indent\newline
+Given a linear, homogeneous equation with zero flux at the boundaries we can expect a general solution of the following form:
+\begin{align}
+    v(x,t) = \frac{1}{2} a_0 + \sum_{n=1}^\infty a_n \cos{\frac{n \pi x}{L}}e^{-\varepsilon(n \pi/L)^2t}.
+\end{align}
+
+\end{answer}
+\end{exer}
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\begin{exer}
+
+\end{exer}
+\begin{answer}
+We can expect the particular the solution to have the following form:
+\begin{align}
+    w(x,t) = (At+B)\cos{\frac{2 \pi x}{L}}+ (Bt +C)\sin{\frac{ 2 \pi x}{L}}
+\end{align}
+With 2.1, we can calculate that pertinent partial derivatives:
+\begin{align}
+    \frac{\partial w}{\partial t} = A\cos{\frac{2 \pi x}{L}} + C\sin{\frac{2 \pi x}{L}}
+\end{align}
+\begin{align}
+    \frac{\partial w}{\partial x} = -\frac{2 \pi}{L}\Big(At+B\Big)\sin{\frac{2 \pi x}{L}} +\frac{2 \pi}{L}\Big(Ct+D\Big)\cos{\frac{2 \pi x}{L}}
+\end{align}
+\begin{align}
+    \frac{\partial^2 w}{\partial x^2} = -\frac{4 \pi^2}{L^2}\Big(At+B\Big)\cos{\frac{2 \pi x}{L}} - \frac{4 \pi^2}{L^2} \Big(Ct+D\Big)\sin{\frac{2 \pi x}{L}}.
+\end{align}
+Now we plug 2.4 and 2.2 into 2.1 and compare coefficients. 
+\begin{align*}
+    A\cos{\frac{2 \pi x}{L}} + C\sin{\frac{2 \pi x}{L}} = -\frac{4\varepsilon \pi^2}{L^2}\Big[(At+B)\cos{\frac{2 \pi x}{L}}+ (Bt +C)\sin{\frac{ 2 \pi x}{L}}\Big] + t\cos{\frac{2 \pi x}{L}}\\
+    \implies -\frac{AL^2}{4\varepsilon\pi^2}\cos{\frac{2 \pi x}{L}} - -\frac{CL^2}{4\varepsilon\pi^2}\sin{\frac{2 \pi x}{L}}+\frac{tL^2}{4\varepsilon\pi^2}\cos{\frac{2 \pi x}{L}}= (At+B)\cos{\frac{2 \pi x}{L}}+ (Bt +C)\sin{\frac{ 2 \pi x}{L}}\\
+    \implies \Bigg( -\frac{AL^2}{4\varepsilon\pi^2} - At -B + \frac{tL^2}{4\varepsilon\pi^2}\Bigg)\cos{\frac{2 \pi x}{L}} + \Bigg(-\frac{CL^2}{4\varepsilon\pi^2}-Ct-D\Bigg)\sin{\frac{2 \pi x}{L}}=0.
+\end{align*}
+Now, both coefficients must be zero. This mean the linear and constant terms of both coefficients must be zero. We see expressly that C and D are zero. For A and B we observe the following:
+\begin{align}
+    \frac{L^2}{4\varepsilon\pi^2} - A = 0 \implies A = \frac{L^2}{4\varepsilon\pi^2} 
+    \implies B= -\frac{AL^2}{4\varepsilon\pi^2} \implies B = -\frac{L^4}{16\varepsilon^2\pi^4}.
+\end{align}
+Combining 2.5 and 2.1 we have a particular as follows:
+\begin{align*}
+      w(x,t) = \Big(\frac{L^2}{4\varepsilon\pi^2}t-\frac{L^4}{16\varepsilon^2\pi^4}\Big)\cos{\frac{2 \pi x}{L}}
+\end{align*}
+\end{answer}
+
+\begin{exer}
+\begin{answer}
+Combining $v$ and $w$ as $u$ we get the following class of solutions:
+\begin{align*}
+    u(x,t) = \frac{1}{2} a_0 + \sum_{n=1}^\infty a_n \cos{\frac{n \pi x}{L}}e^{-\varepsilon(n \pi/L)^2t} + \Big(\frac{L^2}{4\varepsilon\pi^2}t-\frac{L^4}{16\varepsilon^2\pi^4}\Big)\cos{\frac{2 \pi x}{L}}
+\end{align*}
+Computing the partial of the above with respect to $x$ allows us to check the boundary condidtions. 
+\begin{align}
+\frac{\partial u}{\partial x}= -\frac{n\pi}{L} \sum_{n=1}^\infty a_n \sin{\frac{n \pi x}{L}}e^{-\varepsilon(n \pi/L)^2t} - \frac{2\pi}{L}\Big(\frac{L^2}{4\varepsilon\pi^2}t-\frac{L^4}{16\varepsilon^2\pi^4}\Big)\sin{\frac{2 \pi x}{L}}.
+\end{align}
+We can see that 3.1 satisfies the zero flux condition because we have a combination of $\sin$ functions that evaluate to zero when $x=L=0$. Finally, using the initial condition we see the following:
+\begin{align*}
+    u(x,0)= \cos{\frac{2 \pi x}{L}} = \frac{1}{2}  a_0 +\sum_{n=1}^\infty a_n \cos{\frac{2 \pi x}{L}} -\frac{L^2}{4\varepsilon\pi^2} \cos{\frac{2 \pi x}{L}}
+    \implies a_2 = 1+ \frac{L^2}{4\varepsilon\pi^2}.
+\end{align*}
+Furthermore, we see all other coefficients are zero. Therefore, our unique solution is as follows:
+\begin{align*}
+    c(x,t) = \Bigg( 1+ \frac{L^2}{4\varepsilon\pi^2}\Bigg) \cos{\frac{2 \pi x}{L}}e^{-\varepsilon(n \pi/L)^2t} + \Big(\frac{L^2}{4\varepsilon\pi^2}t-\frac{L^4}{16\varepsilon^2\pi^4}\Big)\cos{\frac{2 \pi x}{L}}.
+\end{align*}
+\end{answer}
+\end{exer}
+\end{document}
+ 

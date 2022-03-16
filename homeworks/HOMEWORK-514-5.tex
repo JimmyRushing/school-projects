@@ -1,0 +1,160 @@
+\documentclass[12pt,oneside]{amsart}
+
+\title{Math 414/514 Homework 5}
+\author{James Rushing}
+\date{02/22/20}
+
+% Homework template by Zach Teitler
+% Public domain, free to use and modify for any purpose
+% v1.0 2020-01-13
+
+% Packages
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage[letterpaper,margin=1.5in]{geometry}
+\usepackage[pagebackref]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+
+% Extra space between lines
+
+\linespread{1.2}
+
+
+
+% Theorems, lemmas, etc.
+
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{claim}[equation]{Claim}
+\newtheorem{lemma}[equation]{Theorem}
+\newtheorem{corollary}[equation]{Theorem}
+\newtheorem{conjecture}[equation]{Conjecture}
+\newtheorem{question}[equation]{Question}
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[equation]{Definition}
+
+\theoremstyle{remark}
+
+\newtheorem{exer}{Exercise}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem{example}[equation]{Example}
+
+\numberwithin{equation}{exer}
+
+
+% Answers
+
+% Use "proof" for proof exercises!
+% Use "answer" for question (non-proof) exercises
+
+\newenvironment{answer}{\bigskip\noindent\emph{Answer.}}{\hfill$\diamond$\newline}
+
+
+% Symbols
+
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbZ}{\mathbb{Z}}
+
+
+
+
+\begin{document}
+\maketitle
+
+\begin{exer} (9.2.5)
+Verify that $9.4,9.5,9.6$ can be paraphrased as "the order of taking the limit matters."
+\end{exer}
+
+
+
+\
+
+
+
+
+\begin{answer}
+
+\indent In examples 9.4 and 9.5 we see that the order of taking the limit matters, in that, if we first take the limit of $f_n(x)=\frac{x^n}{n}$ we get 0. Differentiating this gives 0. But if we first take the derivative and then take the limit we end up with example 9.4 which is not 0 for $x \in [0,1]$
+\newline \indent In example 9.6 we see that order matters,in that, integrating $f_n(x)$ after taking the limit isn't necessarily the same as taking the limit first and then integrating.
+
+\end{answer}
+
+
+\newpage
+\indent \newline
+\begin{exer} (9.2.11)
+Show that the set of convergence points of $\{f_n\}$ can be written as 
+\begin{align*}
+    E= \bigcap_{k=1}^\infty \bigcup_{N=1}^\infty \bigcap_{n=N}^\infty \bigcap_{m=N}^\infty \{ x : |f_n(x)-f_m(x)|\leq \frac{1}{k}\}.
+    \end{align*}
+\end{exer}
+\begin{answer}
+    To show this we observe first that if $\{f_n\}$ is convergent on $E$ then it is Cauchy on E. Or $\forall$ $\epsilon > 0$ $\exists$ and $N$ such that where $n,m \geq N$ we have 
+\begin{align*}
+    |f(_n(x) - f_m(x)| < \epsilon.
+\end{align*}
+If this is true for $\epsilon > 0$ then it it is true for $\epsilon = \frac{1}{k}$ $\forall$ $k \in \mathbb{N}$. So we can write the points where $f_n(x)$ converges as
+\begin{align*}
+    E 
+    =\bigcap_{k=1}^\infty \{x: \exists N, \forall n,m\geq N,|f(_n(x) - f_m(x)| < \frac{1}{k} \}\\
+    =\bigcap_{k=1}^\infty \bigcup_{N=1}^\infty \bigcap_{n,m\geq N}^\infty\{x: |f(_n(x) - f_m(x)| < \frac{1}{k} \}\\
+    =\bigcap_{k=1}^\infty \bigcup_{N=1}^\infty \bigcap_{n=N}^\infty \bigcap_{m=N}^\infty\{x: |f(_n(x) - f_m(x)| < \frac{1}{k} \}.
+\end{align*}
+
+\end{answer}
+
+
+
+\newpage
+
+\indent \newline
+
+\begin{exer} (9.3.4)
+Prove that if $f_n \to f$ uniformly on $E_1$ and $E_2$, then $f_n \to f$ on $E_1 \cup E_2$.
+
+\end{exer}
+
+\begin{proof}
+If $f_n \to f$ uniformly on $E_1$ and $E_2$ then we have $N_1,N_2 \in \mathbb{N}$ s.t. 
+\begin{align*}
+    |f_n(x) - f(x)| < \epsilon \\
+    \forall x \in E_1 \indent \text{and} \indent n\geq N_1
+    \end{align*}
+\begin{align*}
+    \textbf{and}
+\end{align*}
+\begin{align*}
+    |f_n(x) - f(x)| < \epsilon \\
+    \forall x \in E_2 \indent \text{and} \indent n\geq N_2.
+\end{align*}
+Choose $N$ to be the greater of $N_1$ and $N_2$. Now we have
+\begin{align*}
+    |f_n(x) - f(x)| < \epsilon\\
+        \forall x \in E_1\cup E_2 \indent \text{and} \indent n\geq N.
+\end{align*}
+\end{proof}
+\newpage
+\indent \newline
+\begin{exer} (9.3.5)
+Prove or disprove that if $f_n \to f$ uniformly on each $E_1,E_2,,E_3...,$ then $f_n \to f$ uniformly on $\cap_{k=1}^\infty E_k$.
+\end{exer}
+\begin{answer}
+\indent As a counterexample, consider $f_n = x^n$. Let $E_1 = \{1\}$ and let $E_k = [0, 1-\frac{1}{k}]$ for $k= 2,3,4,..$. Now we see that $f_n = x^n$ converges uniformly on each $E_k$. However 
+\begin{align*}
+    \cap_{k=1}^\infty E_k = [0,1]
+\end{align*}
+and from example $9.4$ we know that $f_n$ does not uniformly converge on $[0,1]$.
+\end{answer}
+\end{document}
